@@ -27,14 +27,24 @@ int main(void)
 		RCC->AHB1ENR |= (1<<0);
 
 		GPIOA->MODER |= (1 << (2*2));
+		GPIOA->MODER |= (1 << (3*2));
+		GPIOA->MODER |= (1 << (4*2));
+
 
 		GPIOA->ODR |= (1 << 2);
 
     /* Loop forever */
 	while(1){
-		GPIOA -> ODR &= (0 << 2);
-		delay();
 		GPIOA -> ODR |= (1 << 2);
 		delay();
+		GPIOA -> ODR &= ~(1 << 2);
+		delay();
+		GPIOA -> ODR |= (1 << 3);
+		delay();
+		GPIOA -> ODR &= ~(1 << 3);
+		delay();
+		GPIOA -> ODR |= (1 << 4);
+		delay();
+		GPIOA -> ODR &= ~(1 << 4);
 	}
 }
