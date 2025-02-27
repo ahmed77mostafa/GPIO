@@ -5,7 +5,7 @@
  * This file contains the memory addresses and structures for the GPIO and RCC
  * registers to enable low-level hardware control on the STM32F401 MCU.
  *
- * @author Dina Elsayed
+ * @author Ahmed Mostafa
  * @date February 15, 2025
  */
 
