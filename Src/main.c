@@ -24,11 +24,14 @@ void delay(){
 }
 int main(void)
 {
-		RCC->AHB1ENR |= (1<<0);
+		RCC->AHB1ENR |= (1 << 0);
 
 		GPIOA->MODER |= (1 << (2*2));
 		GPIOA->MODER |= (1 << (3*2));
 		GPIOA->MODER |= (1 << (4*2));
+
+		GPIOA->MODER &= ~(3 << (2 * 10));
+		GPIOA->MODER |=(1 << (2 * 9));
 
 
 		GPIOA->ODR |= (1 << 2);
@@ -46,5 +49,16 @@ int main(void)
 		GPIOA -> ODR |= (1 << 4);
 		delay();
 		GPIOA -> ODR &= ~(1 << 4);
+
+		//GPIOA->PUPDR &= ~(1<<(2*10));
+		//GPIOA->PUPDR |= (1<<((2*10)+1));
+
+		if(GPIOA->IDR & (1 << 10)){
+			//while(GPIOA->IDR & (1 << 10));
+			GPIOA->ODR |= (1 << 9);
+		}
+		else{
+			GPIOA->ODR &= ~(1 << 9);
+		}
 	}
 }
